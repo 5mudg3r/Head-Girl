@@ -4,7 +4,7 @@
     -fx-background: rgb(75, 75, 75);
 }
 
-#time {
+#label {
     -fx-text-fill: #FFFFFF;
     -fx-background-color: rgb(30, 178, 146);
     -fx-border-radius: 30;
@@ -12,12 +12,15 @@
     -fx-padding: 10;
 }
 
-#visitor {
-    -fx-text-fill: #FFFFFF;
-    -fx-background-color: rgb(30, 178, 146);
-    -fx-border-radius: 30;
-    -fx-background-radius: 30;
-    -fx-padding: 10;
+#text {
+    -fx-fill: #FFFFFF;
+
+}
+
+#bold-text {
+    -fx-fill: #FFFFFF;
+    -fx-font-weight: bold;
+
 }
 
 #center {
@@ -25,8 +28,4 @@
     -fx-border-radius: 50;
     -fx-background-radius: 50;
     -fx-padding: 10;
-}
-
-#center-text {
-    -fx-fill: white;
 }

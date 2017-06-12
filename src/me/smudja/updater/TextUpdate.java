@@ -74,7 +74,7 @@ public class TextUpdate extends Update {
 		
 		box.getChildren().add(msg);
 		
-		msg.setId("center-text");
+		msg.setId("text");
 		msg.applyCss();
 		msg.setFont(Font.font(HeadGirl.getFontSize()));
 		
@@ -84,7 +84,7 @@ public class TextUpdate extends Update {
 		
 		box.getChildren().add(date);
 		
-		date.setId("center-text");
+		date.setId("text");
 		date.applyCss();
 		date.setFont(Font.font(HeadGirl.getFontSize()));
 		

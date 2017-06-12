@@ -96,7 +96,7 @@ public class PhotoUpdate extends Update {
 		
 		box.getChildren().addAll(image, info);
 		
-		info.setId("center-text");
+		info.setId("text");
 		info.applyCss();
 		info.setFont(Font.font(HeadGirl.getFontSize() - 10));
 		

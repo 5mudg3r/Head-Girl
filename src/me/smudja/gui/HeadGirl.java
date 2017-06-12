@@ -235,7 +235,7 @@ public class HeadGirl extends Application {
         topNode.setAlignment(Pos.CENTER_RIGHT);
         
         Label timeLbl = new Label();
-        timeLbl.setId("time");
+        timeLbl.setId("label");
         topNode.getChildren().add(timeLbl);
         
         DateFormat timeFormat = new SimpleDateFormat( "HH:mm:ss" );
