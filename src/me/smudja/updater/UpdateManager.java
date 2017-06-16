@@ -122,9 +122,12 @@ public enum UpdateManager {
 	private Update[] getUpdate() {	
 		JSONArray result = apiManager.getUpdate(offset, HeadGirl.getRequestLimit(), HeadGirl.getTimeout(), allowed_updates);
 
+		if(result == null) {
+			result = new JSONArray();
+		}
+		
 		// if we have no new updates, return
-		Boolean updated = (result.size() == 0 ? false : true);
-		if(!updated) {
+		if(result.size() == 0) {
 			return null;
 		}
 

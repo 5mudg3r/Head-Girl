@@ -3,7 +3,6 @@
  */
 package me.smudja.updater;
 
-import java.awt.image.BufferedImage;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -16,14 +15,11 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import javax.imageio.ImageIO;
-
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import javafx.embed.swing.SwingFXUtils;
 import javafx.scene.image.Image;
 import me.smudja.utility.LogLevel;
 import me.smudja.utility.Reporter;
@@ -66,6 +62,7 @@ enum APIManager {
 		try {
 			Path dir = Paths.get("").toAbsolutePath();
 			if (!Files.exists(dir.resolve("config/token"))) {
+				Files.createDirectory(dir.resolve("config"));
 				Files.createFile(dir.resolve("config/token"));
 				Reporter.report("No token file found. Please fill in token. Exiting...", LogLevel.INFO);
 				System.exit(1);
@@ -109,7 +106,7 @@ enum APIManager {
 		try {
 			// open connection to API and get string response
 			URLConnection connection = new URL(url + bot_code + "getUpdates?" + query).openConnection();
-			InputStream responseStream = connection.getInputStream();
+			InputStream responseStream = connection.getInputStream();			
 			BufferedReader streamReader = new BufferedReader(new InputStreamReader(responseStream, charset)); 
 			StringBuilder responseStrBuilder = new StringBuilder();
 
@@ -140,6 +137,7 @@ enum APIManager {
 			return result;
 		} catch (IOException ioExc) {
 			Reporter.report("Unable to request update from API (IO Exception). Can't check for updates this run...", LogLevel.MINOR);
+			ioExc.printStackTrace();
 			return null;
 		}
 	}
@@ -194,10 +192,8 @@ enum APIManager {
 			
 			String file_path = (String) result.get("file_path");
 	        
-			BufferedImage photoBuff = ImageIO.read(new URL(url + "file/" + bot_code + file_path));
+			Image photo = new Image((url + "file/" + bot_code + file_path));
 			
-	        Image photo = SwingFXUtils.toFXImage(photoBuff, null);
-	        
 	        return photo;
 		}
 		catch (IOException ioExc) {
