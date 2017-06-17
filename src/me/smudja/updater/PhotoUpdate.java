@@ -6,8 +6,10 @@ package me.smudja.updater;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
+import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
 import javafx.geometry.Rectangle2D;
+import javafx.scene.Group;
 import javafx.scene.Node;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -101,6 +103,22 @@ public class PhotoUpdate extends Update {
 		info.setFont(Font.font(HeadGirl.getFontSize() - 10));
 		
 		box.layout();
+		
+		Group root = new Group();
+
+		root.getChildren().add(box);
+
+		root.applyCss();
+		root.layout();
+    
+        Bounds boxBounds = box.getLayoutBounds(); 
+        
+        // rescale text size so that it fits on screen
+        while(boxBounds.getHeight() > (screenBounds.getHeight()- 50)) {
+        	image.setFitHeight(image.getFitHeight() - 10);
+        	root.layout();
+        	boxBounds = box.getLayoutBounds();
+        }
 		
 		return box;
 	}

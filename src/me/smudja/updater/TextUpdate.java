@@ -82,6 +82,9 @@ public class TextUpdate extends Update {
 		
 		Text date = new Text("SENT: " + format.format(getTimeReceived()).toUpperCase());
 		
+		date.setWrappingWidth(screenBounds.getWidth());
+		date.setTextAlignment(TextAlignment.CENTER);
+		
 		box.getChildren().add(date);
 		
 		date.setId("text");
