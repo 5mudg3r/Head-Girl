@@ -102,8 +102,15 @@ public enum UpdateManager {
 		Iterator<Update> iterator = updatesList.iterator();
 		while (iterator.hasNext()) {
 			Update item = iterator.next();
-			if((currentTime - item.getRawDate()) > HeadGirl.getMessageLife()) {
-				iterator.remove();
+			if(item instanceof TextUpdate) {
+				if((currentTime - item.getRawDate()) > HeadGirl.getMessageLife()) {
+					iterator.remove();
+				}
+			}
+			if(item instanceof PhotoUpdate) {
+				if((currentTime - item.getRawDate()) > HeadGirl.getPhotoLife()) {
+					iterator.remove();
+				}
 			}
 		}
 		

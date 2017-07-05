@@ -58,6 +58,12 @@ public class HeadGirl extends Application {
 	private static int MESSAGE_LIFE;
 	
 	/**
+	 * how long photos should persist before they expire
+	 * (milliseconds)
+	 */
+	private static int PHOTO_LIFE;
+	
+	/**
 	 * how often to check for updates
 	 * (milliseconds)
 	 */
@@ -113,6 +119,7 @@ public class HeadGirl extends Application {
 			try(FileOutputStream output = new FileOutputStream("config/config.properties")) {
 				prop.setProperty("timeout", "1");
 				prop.setProperty("message_life", "300000");
+				prop.setProperty("photo_life", "1200000");
 				prop.setProperty("update_frequency", "10000");
 				prop.setProperty("request_limit", "10");
 				prop.setProperty("font_size", "60");
@@ -129,6 +136,7 @@ public class HeadGirl extends Application {
 			prop.load(input);
 			TIMEOUT = Integer.parseInt(prop.getProperty("timeout", "1"));
 			MESSAGE_LIFE = Integer.parseInt(prop.getProperty("message_life", "300000"));
+			PHOTO_LIFE = Integer.parseInt(prop.getProperty("photo_life", "1200000"));
 			UPDATE_FREQUENCY = Integer.parseInt(prop.getProperty("update_frequency", "10000"));
 			REQUEST_LIMIT = Integer.parseInt(prop.getProperty("request_limit", "10"));
 			FONT_SIZE = Integer.parseInt(prop.getProperty("font_size", "60"));
@@ -136,6 +144,7 @@ public class HeadGirl extends Application {
 			Reporter.report("Unable to load properties as file doesn't exist, using defaults", LogLevel.MINOR);
 			TIMEOUT = 1;
 			MESSAGE_LIFE = 300000;
+			PHOTO_LIFE = 1200000;
 			UPDATE_FREQUENCY = 10000;
 			REQUEST_LIMIT = 10;
 			FONT_SIZE = 60;
@@ -143,6 +152,7 @@ public class HeadGirl extends Application {
 			Reporter.report("Unable to load properties (IO Exception), using defaults", LogLevel.MINOR);
 			TIMEOUT = 1;
 			MESSAGE_LIFE = 300000;
+			PHOTO_LIFE = 1200000;
 			UPDATE_FREQUENCY = 10000;
 			REQUEST_LIMIT = 10;
 			FONT_SIZE = 60;
@@ -200,6 +210,14 @@ public class HeadGirl extends Application {
 	 */
 	public static int getMessageLife() {
 		return MESSAGE_LIFE;
+	}
+	
+	/**
+	 * 
+	 * @return photo_life
+	 */
+	public static int getPhotoLife() {
+		return PHOTO_LIFE;
 	}
 	
 	/**

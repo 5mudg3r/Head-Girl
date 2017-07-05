@@ -14,6 +14,8 @@ import javafx.scene.layout.FlowPane;
 import javafx.scene.text.Font;
 import javafx.scene.text.Text;
 import javafx.scene.text.TextAlignment;
+import me.smudja.updater.PhotoUpdate;
+import me.smudja.updater.TextUpdate;
 import me.smudja.updater.Update;
 import me.smudja.updater.UpdateManager;
 
@@ -64,9 +66,16 @@ public enum Updater {
 		Iterator<Update> iterator = updates.iterator();
 		while (iterator.hasNext()) {
 			Update item = iterator.next();
-			if((currentTime - item.getRawDate()) > HeadGirl.getMessageLife()) {
-				iterator.remove();
+			if(item instanceof TextUpdate) {
+				if((currentTime - item.getRawDate()) > HeadGirl.getMessageLife()) {
+					iterator.remove();
+				}
 			}
+			if(item instanceof PhotoUpdate) {
+				if((currentTime - item.getRawDate()) > HeadGirl.getPhotoLife()) {
+					iterator.remove();
+				}
+			}	
 		}
 		
 		// add any new updates
