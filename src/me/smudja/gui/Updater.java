@@ -147,7 +147,9 @@ public enum Updater {
 			Path dir = Paths.get("").toAbsolutePath();
 			if (!Files.exists(dir.resolve("appointments.txt"))) {
 				Reporter.report("No appointments file found. Not displaying next visitor information", LogLevel.INFO);
-			}
+				return defaultNode;
+			} 
+			else {
 			appointments = Files.readAllLines(dir.resolve("appointments.txt"));
 			Iterator<String> iterator = appointments.iterator();
 			while (iterator.hasNext()) {
@@ -155,6 +157,7 @@ public enum Updater {
 				if(line.startsWith("#")) {
 					iterator.remove();
 				}
+			}
 			}
 		}
 		catch(IOException exc) {
