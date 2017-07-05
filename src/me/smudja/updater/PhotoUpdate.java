@@ -87,7 +87,7 @@ public class PhotoUpdate extends Update {
 				image.setFitWidth(screenBounds.getWidth());
 			}
 			if (image.getImage().getHeight() > (screenBounds.getHeight() - 150)) {
-				image.setFitHeight(screenBounds.getHeight() - 150);
+				image.setFitHeight(screenBounds.getHeight() - 200);
 			}
 		}
 		
