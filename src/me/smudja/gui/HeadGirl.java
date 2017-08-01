@@ -43,7 +43,7 @@ public class HeadGirl extends Application {
 	/**
 	 * version
 	 */
-	public final static String VERSION = "2.0";
+	public final static String VERSION = "2.1";
 	
 	/**
 	 * the time to wait for a response from the API
